@@ -1,0 +1,24 @@
+
+"""modifier ce prgm pour définir ligne"""
+
+def charge_eleves():
+    # Acces au fichier des eleves en mode lecture
+    acces_fichier = open("eleves.csv","r")
+
+    # Creation d'une liste vide
+    liste_eleves = []
+    # Remplissage de la liste a partir du fichier
+    for ligne in acces_fichier:
+        # Transforme la ligne en une liste de champs
+        liste_champs_eleve = ligne.split(";")
+        # Conversion de texte vers entier
+        liste_champs_eleve[0] = int(liste_champs_eleve[0])
+        # Suppression du \n final
+        champ = liste_champs_eleve[3]
+        taille = len(champ) - 1
+        liste_champs_eleve[3] = champ[0:taille]
+        # Ajoute la sous-liste des champs de l'eleve a la liste des eleves
+        liste_eleves.append(liste_champs_eleve)
+
+    acces_fichier.close()
+    return liste_eleves
